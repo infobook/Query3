@@ -1,0 +1,193 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{64FB64EC-F52F-4BE1-A276-2525D1DCBBC3}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>.\Images\Icons\Query.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>CommandAS.QueryForm</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CommandAS.QueryForm</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>IBQuery</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>IBQuery</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Tools4\Tools4.csproj">
+      <Project>{7181F026-DE87-4463-99B9-0021E586CEC1}</Project>
+      <Name>Tools4</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\QueryLib\QueryLib.csproj">
+      <Name>QueryLib</Name>
+      <Project>{98E2EDEE-8AAB-4727-8CCF-3CEC4D7DEBB5}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>True</Private>
+    </ProjectReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutoResizeDataGridTableStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dlgParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgPasswordSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgQProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Task.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ucParamDef.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <None Include="ucParam_old.cs">
+      <SubType>UserControl</SubType>
+    </None>
+    <EmbeddedResource Include="dlgPassword.resx">
+      <DependentUpon>dlgPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgPasswordSet.resx">
+      <DependentUpon>dlgPasswordSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgQProperty.resx">
+      <DependentUpon>dlgQProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQResult.resx">
+      <DependentUpon>frmQResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuery.resx">
+      <DependentUpon>frmQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Icons\DocNew.ico" />
+    <EmbeddedResource Include="Images\Icons\DocOpen.ico" />
+    <EmbeddedResource Include="Images\Icons\Excel.ico" />
+    <EmbeddedResource Include="Images\Icons\ExecQuery.ico" />
+    <EmbeddedResource Include="Images\Icons\HideStatus.ico" />
+    <EmbeddedResource Include="Images\Icons\Query.ico" />
+    <EmbeddedResource Include="Images\Icons\QueryListItem.ico" />
+    <EmbeddedResource Include="Images\Icons\Run.ico" />
+    <EmbeddedResource Include="Images\Icons\TextHTML.ico" />
+    <EmbeddedResource Include="Images\Icons\TextParam.ico" />
+    <EmbeddedResource Include="Images\Icons\TextSQL.ico" />
+    <EmbeddedResource Include="Images\Icons\TextXSLT.ico" />
+    <EmbeddedResource Include="Images\Icons\ViewStatus.ico" />
+    <EmbeddedResource Include="Images\Icons\XSLTView.ico" />
+    <EmbeddedResource Include="ucParam_old.resx">
+      <DependentUpon>ucParam_old.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,11 @@
+# a comment this is ignored
+bin/
+obj/
+.svn/
+*.scc
+*.sln
+*.suo
+*.csproj.user
+*.csproj.vspscc
+
+

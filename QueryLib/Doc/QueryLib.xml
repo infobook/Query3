@@ -1,0 +1,979 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommandAS.QueryLib</name>
+    </assembly>
+    <members>
+        <member name="T:CommandAS.QueryLib.eQueryParamType">
+            <summary>
+            Типы параметров
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.Undefined">
+            <summary>
+            Не определен.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.String">
+            <summary>
+            Строка.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.StrSelectList">
+            <summary>
+            Список (ComboBox) элементов.<BR/>
+            Выбров один из них результатом будет строка (отображаемая в списке).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.StrSelectTree">
+            <summary>
+            Иерархия (TreeView) элементов.<BR/>
+            Выбров один из них результатом будет строка (не отображаемая в списке).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.Integer">
+            <summary>
+            Целое число.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.IntSelectList">
+            <summary>
+            Список элементов. 
+            Выбров один из них результатом будет целое число (не отображаемое, как правило).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.IntSelectTree">
+            <summary>
+            Иерархия (TreeView) элементов.<BR/>
+            Выбров один из них результатом будет целое число (не отображаемое в списке).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.Boolean">
+            <summary>
+            Переключатель - ДА/НЕТ.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.Date">
+            <summary>
+            Дата
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.PlaceCode">
+            <summary>
+            Производный тип PlaceCode. Два целых числа записанных через разделитель ":".
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.PCSelectList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.eQueryParamType.PCSelectTree">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.Param">
+            <summary>
+            Параметр запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.Number">
+            <summary>
+            Номер запроса. Может использоваться для упорядочивания параметров.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.Title">
+            <summary>
+            Внешнее (отображаемое) имя параметра.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.Name">
+            <summary>
+            Внутреннее (используемое в SQL) имя параметра.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.Type">
+            <summary>
+            Тип параметра. См. перечисление eQueryParamType.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.Inset">
+            <summary>
+            Способ установки параметра.
+            False - стандартная для OLEDB встатка параметров для SQL запроса.
+            True - простая замена текста.
+            Различие актуально только для SQL, в XSLT вставка всегда выполняется заменой текста. 
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.CurrentValue">
+            <summary>
+            Текущее значение параметра.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.DefaultValue">
+            <summary>
+            Значение поумолчанию.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Param.SelectValue">
+            <summary>
+            SQL запрос или перечисление допустимых значений параметра.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Param.#ctor">
+            <summary>
+            Конструктор по умолчанию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Param.#ctor(CommandAS.QueryLib2.Param)">
+            <summary>
+            Котрструктор преобразования с версии 2.
+            </summary>
+            <param name="aPrm">Параметр в формате версии 2.</param>
+        </member>
+        <member name="T:CommandAS.QueryLib.Query">
+            <summary>
+            Запрос.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Code">
+            <summary>
+            Уникальный идентификатор запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Name">
+            <summary>
+            Название запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.DateCreate">
+            <summary>
+            Дата создания запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.DateLastModified">
+            <summary>
+            Дата последнего изменения запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Hidden">
+            <summary>
+            Флаг видимости запроса. 
+            true - видим в пользовательском режиме
+            false - невидим в пользовательском режиме
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Author">
+            <summary>
+            Автор запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Note">
+            <summary>
+            Замечания к запросу.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Text">
+            <summary>
+            Текст запроса. SQL выражение.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.XSLT">
+            <summary>
+            Текст XSLT преобразования.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.ImageName">
+            <summary>
+            Имя файла с изображением (*.ico, *.jpg и т.п.) для запроса.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Query.Params">
+            <summary>
+            Коллекция параметров.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Query.#ctor">
+            <summary>
+            Конструктор по умолчанию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Query.#ctor(CommandAS.QueryLib2.Query)">
+            <summary>
+            Котрструктор преобразования с версии 2.
+            </summary>
+            <param name="aPrm">Запрос в формате версии 2.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Query.SaveAs(System.String)">
+            <summary>
+            Сохранение запроса в файле.
+            </summary>
+            <param name="aFileName">Имя файла.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Query.Load(System.String)">
+            <summary>
+            Загрузка запроса из фйла.
+            </summary>
+            <param name="aFileName">Имя файла.</param>
+            <returns>Загруженный запрос.</returns>
+        </member>
+        <member name="T:CommandAS.QueryLib.Session">
+            <summary>
+            Сессия - совокупность запросов объединенных, как правило, или одним соединением с БД
+            или логикой задачи.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.Code">
+            <summary>
+            Уникальный идентификатор сессии.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.Title">
+            <summary>
+            Название сессии.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.Note">
+            <summary>
+            Комментарии к сессии.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.DBConnection">
+            <summary>
+            Строка соединения с БД.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.ParamBegDelim">
+            <summary>
+            Начальные символы параметров.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.ParamEndDelim">
+            <summary>
+            Конечные символы параметров.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.Hash">
+            <summary>
+            Хеш сумма пароля для входа в режим редактирования/проектирования сессии.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.ImagePath">
+            <summary>
+            Местонахождение изображение используемых в сессии. 
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.ImageName">
+            <summary>
+            Имя файла с изображением (*.ico, *.jpg и т.п.) для сессии.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Session.Params">
+            <summary>
+            Коллекция общих параметров.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Session.#ctor">
+            <summary>
+            Конструктор по умолчанию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Session.#ctor(CommandAS.QueryLib2.Session)">
+            <summary>
+            Котрструктор преобразования с версии 2.
+            </summary>
+            <param name="aPrm">Сессия в формате версии 2.</param>
+        </member>
+        <member name="T:CommandAS.QueryLib2.Param">
+            <summary>
+            Параметр запроса.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib2.Query">
+            <summary>
+            Запрос.
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib2.Query.Params">
+            <summary>
+            Коллекция параметров.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib2.Session">
+            <summary>
+            Сессия - совокупность запросов объединенных, как правило, или одним соединением с БД
+            или логикой задачи.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.PCTVItemData">
+            <summary>
+            Данные хранящиеся в таге (TreeNode.Tag)
+            каждого элемента дерева (TreeView).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.ucParameters._ShowWordFilter">
+            <summary>
+            нужно ли слово Фильтр перед параметрами
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.ucParameters.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.ucParameters.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ucParameters.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.ucTreeQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.ucTreeQuery._IsProhibition(CommandAS.QueryLib.Query)">
+            <summary>
+            Запрет на отображение (исполнение) запроса.
+            Может быть переопределено в производном классе.
+            </summary>
+            <param name="aQ">запрос</param>
+            <returns>true - отображение запрещено; false - отображение разрешено</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ucTreeQuery.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.ucTreeQuery.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.ucIBTreeQuery">
+            <summary>
+            Класс отображения иерархии запросов с учетом специфики
+            определения прав доступа к запросам БД InfoBook.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.WorkDB">
+            <summary>
+            Текущая ("рабочая") база данных (БД).
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.WorkDB.mCn">
+            <summary>
+            Соединение с БД
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.WorkDB.mTxn">
+            <summary>
+            Транзакция
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.WorkDB.mErr">
+            <summary>
+            Ошибка
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.#ctor">
+            <summary>
+            Конструктор по умолчанию
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.#ctor(System.Data.OleDb.OleDbConnection)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="aCn">соединение</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.#ctor(System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="aConnectionString">строка соединения</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.TransactionBegin">
+            <summary>
+            Начать транзакцию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.TransactionCommit">
+            <summary>
+            Закончить транзакцию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.TransactionRollback">
+            <summary>
+            "Откатить" транзакцию.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.NewOleDbCommand">
+            <summary>
+            Новая SQL команда.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.NewOleDbCommand(System.String)">
+            <summary>
+            Новая SQL команда.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.ExecuteNonQuery(System.Data.OleDb.OleDbCommand)">
+            <summary>
+            Выполнить SQL команду, не возвращающую DataSet/DataTable.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.ConnectionOpen(System.String)">
+            <summary>
+            Открыть соединение с БД.
+            </summary>
+            <param name="aConnectionString">строка соединения</param>
+            <returns>true - успешно; false - соединение не установлено</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.ConnectionOpen">
+            <summary>
+            Открыть соединение с БД.
+            </summary>
+            <returns>true - успешно; false - соединение не установлено</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.WorkDB.ConnectionClose">
+            <summary>
+            Закрыть соединение.
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.WorkDB.pDBConnection">
+            <summary>
+            Соединение с БД
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.WorkDB.pConnectionString">
+            <summary>
+            Строка соединения с БД.
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.WorkDB.pError">
+            <summary>
+            Ошибка выполнения
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.WorkDB.pTransaction">
+            <summary>
+            Указатель на исполнитель запросов.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.Performer">
+            <summary>
+            Исполнитель запросов сессии.
+            </summary>
+            <datecreate>24.08.2005</datecreate>
+            <author>M.Tor</author>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.VERSION">
+            <summary>
+            HISTORY
+            3.2 - добавлен вывод изображений в XSLT/HTML
+            3.3 - вместо макроподстановки в XSLT сделаны параметры сессии
+            3.4.1 - поправил ошибку в "деревянных" параметрах
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.mSes">
+            <summary>
+            Сессия
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.mDS">
+            <summary>
+            Набор таблиц результатов запроса
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.mTab">
+            <summary>
+            Таблица результатов запроса
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.mCQ">
+            <summary>
+            Указатель на запрос из сессии с которым работает исполнитель
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.mDB">
+            <summary>
+            Связь с БД
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.Performer.pFileName">
+            <summary>
+            Имя файла сессии
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Load(System.String)">
+            <summary>
+            Загрузка сессии из файла [aFileName].
+            pFileName = aFileName;
+            </summary>
+            <param name="aFileName">Полное имя файла сессии.</param>
+            <returns>
+            true - сессия успешно загружена;
+            false - не загружена, ошибка в pError.
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Load">
+            <summary>
+            Загрузка сессии из файла [pFileName].
+            </summary>
+            <returns>
+            true - сессия успешно загружена;
+            false - не загружена, ошибка в pError.
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.IsProhibition(System.Int32)">
+            <summary>
+            Запрещен для выполнения  или нет данный запрос сессии.
+            </summary>
+            <param name="aQueryCode">код запроса</param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.SetCurrentQueryByName(System.String)">
+            <summary>
+            Установить текущий запрос из коллекции сессии по имени [aName].
+            </summary>
+            <param name="aName">Имя запроса.</param>
+            <returns>
+            true - запрос установлен;
+            false - не установлен (не найден запрос).
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.SetCurrentQueryByCode(System.Int32)">
+            <summary>
+            Установить текущий запрос из коллекции сессии по коду [aCode].
+            </summary>
+            <param name="aCode">Код запроса</param>
+            <returns>
+            true - запрос установлен;
+            false - не установлен (не найден запрос).
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.SetCurrentQueryParam(System.String,System.String)">
+            <summary>
+            Установить значение [aValue] параметра [aParamName].
+            </summary>
+            <param name="aParamName">Имя параметра.</param>
+            <param name="aValue">Значение.</param>
+            <returns>
+            true - значение установлено;
+            false - значение не установлено (либо не найден параметр, либо нет текущего запроса).
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Execute(System.Data.OleDb.OleDbConnection,CommandAS.QueryLib.Query)">
+            <summary>
+            Выполняет запрос aQuery для соединения aCn. 
+            Для запроса типа eSQLQueryType.Select результат помещается в таблицу mTab.
+            pDBConnection=aCn
+            pCurrentQuery=aQuery. 
+            Запрос выполняется внутри транзакции соединения pDBConnection.
+            </summary>
+            <param name="aCn">Соединение.</param>
+            <param name="aQuery">Запрос.</param>
+            <returns>
+            true - запрос выполнен успешно;
+            false - запрос не выполнен, ошибка. Ошибка в pError.
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Execute(CommandAS.QueryLib.Query)">
+            <summary>
+            Выполняет запрос aQuery и для типа eSQLQueryType.Select 
+            помещает результат  в таблицу mTab. pCurrentQuery=aQuery.
+            Запрос выполняется внутри транзакции соединения pDBConnection.
+            </summary>
+            <param name="aQuery">Запрос.</param>
+            <returns>
+            true - запрос выполнен успешно;
+            false - запрос не выполнен, ошибка. Ошибка в pError.
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Execute">
+            <summary>
+            Выполняет запрос pCurrentQuery и для типа eSQLQueryType.Select 
+            помещает результат  в таблицу mTab.
+            Запрос выполняется внутри транзакции соединения pDBConnection.
+            </summary>
+            <returns>
+            true - запрос выполнен успешно;
+            false - запрос не выполнен, ошибка. Ошибка в pError.
+            </returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.QueryParam(System.Data.OleDb.OleDbCommand)">
+            <summary>
+            Формирует коллекцию параметров OleDbCommand.Parameters  запроса.
+            </summary>
+            <param name="aCmd">Команда (OleDbCommand) запроса.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.SetCommonParamVal(System.String,CommandAS.QueryLib.eQueryParamType,System.String)">
+            <summary>
+            Устанавливает значение/тип параметра, если нет, создает и добавляет в коллекцию.
+            </summary>
+            <param name="aName">Имя параметра.</param>
+            <param name="aType">Тип параметра.</param>
+            <param name="aVal">Значение параметра.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.GenerateCommandWithParam(System.Data.OleDb.OleDbCommand,System.Collections.ArrayList,System.String,System.String)">
+            <summary>
+            Формирует коллекцию параметров OleDbCommand.Parameters  запроса.
+            </summary>
+            <param name="aCmd">Команда (OleDbCommand) запроса.</param>
+            <param name="aParamsCollection">Коллекция параметров</param>
+            <param name="aPBegDelim">Разделитель - начало параметра</param>
+            <param name="aPEndDelim">Разделитель - окончание параметра</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.GetSQLQueryType(System.String)">
+            <summary>
+            По тексту SQL запросы определяет тип (из перечисления eSQLQueryType).
+            </summary>
+            <param name="aSQLText"></param>
+            <returns>Тип (из перечисления eSQLQueryType).</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.ToString">
+            <summary>
+            Преобразовывает данные таблицы mTab к строке формата:
+            - строки разделены символами "\r\n" (перевод каретки и новая строка)
+            - поля разделены символом "\t" (табуляция)
+            </summary>
+            <returns>Строка с преобразованными данными.</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.SaveTable2XMLFile(System.String)">
+            <summary>
+            Сохраняет данные таблицы mTab в файле с именем [aFileName] в XML формате.
+            </summary>
+            <param name="aFileName">Полное имя файла.</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Table2TempXMLFileName">
+            <summary>
+            Сохраняет данные таблицы mTab в файле в XML формате.
+            Имя файла формируется из имя запроса ('\' заменяется на '_') 
+            плюс расширение XML и помещает в папку pTempPath.
+            </summary>
+            <returns>Полное имя файла.</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.ToExcel">
+            <summary>
+            Запуск Excel и имторт данных из mTab.
+            Используется возможность импорта данных в XML формате.
+            Работает начиная с Excel 2003.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.Get2FilesXML_XSL_Format1">
+            <summary>
+            Создает два файла *.xml, *.xsl и помещает из в папку pTempPath с именем 
+            запроса (в имени '\' заменяется на '_'). В xml файл добавлятся строка:
+            <?xml-stylesheet type="text/xsl"  href="*.xsl"?>
+            где указывается xsl преобразование для iExplorer.
+            </summary>
+            <remarks>
+            Вообще говоря, только iExplorer при получении xml файла и найдя в нем строку с указаным
+            xslt, выполнит преобразование и отобразит. Для mshtml (COM) этот способ не работает.
+            </remarks>
+            <returns>Имя xml файла (полное, с путем).</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.GetFilefromXML_XSL">
+            <summary>
+            Получить HTML файл с преобразованными с помощью XSL данными из mTab.
+            </summary>
+            <returns>Полное имя HTML файла.</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.GetHTMLfromXML_XSL">
+            <summary>
+            Получить HTML строку с преобразованными с помощью XSL данными из mTab.
+            </summary>
+            <returns>строка с HTML</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.MakeHTML(System.String,System.String)">
+            <summary>
+            Преобразование строки с XML при помощи описания XSL в строку содержащую HTML.
+            Из статьи "Utilize Internet Explorer to display report 
+            using XML and XSL from a Windows application"
+            by Patric_J /www.codeproject.com/
+            </summary>
+            <param name="xml">строка данными в XML формате</param>
+            <param name="xsl">строка с XSL преобразованием</param>
+            <returns>строка с HTML</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.BeforeClosed">
+            <summary>
+            Удалить все временно созданные файлы для последнего запроса.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.XSLTInclude(System.String)">
+            <summary>
+            Выполняет все макоподстановки для указаного SXL преобразования.
+            </summary>
+            <param name="xsl">Текст SXL преобразования.</param>
+            <returns>Новое, с учетом подстановок, xsl преобразование.</returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.DeleteAllTemporaryFiles">
+            <summary>
+            Удаляет все временные файлы из коллекции mTempFiles и очищает ее.
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.Performer.ExcelTemplateFilling(System.Xml.XmlDocument)">
+            <summary>
+            Заполнение шаблона Excel
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pTempPath">
+            <summary>
+            Путь к папки (folder) для временных файлов
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pQueries">
+            <summary>
+            Коллекция запросов сессии
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pSes">
+            <summary>
+            Сессия
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pCurrentQuery">
+            <summary>
+            Указатель на запрос из сессии с которым работает исполнитель
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pCountQuery">
+            <summary>
+            Кол-во запросов в сессии
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pWDB">
+            <summary>
+            Рабочая БД.
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pDBConnection">
+            <summary>
+            Связь с БД
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pError">
+            <summary>
+            Ошибка выполнения
+            </summary>
+        </member>
+        <member name="P:CommandAS.QueryLib.Performer.pExecTime">
+            <summary>
+            Время выполнения запроса.
+            </summary>
+        </member>
+        <member name="T:CommandAS.QueryLib.ExcelTemplateLogic">
+            <summary>
+            Класс для заполнения шаблона Excel
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.ExcelTemplateLogic._tempName">
+            <summary>
+            полное название файла-шаблона
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.TemplateProcess">
+            <summary>
+            обработка шаблона
+            </summary>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.ReplaceDotByComma(System.String,System.String)">
+            <summary>
+            Замена запятой на точку в значениях типа Number
+            </summary>
+            <param name="type"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.InheritStyle(System.Xml.XmlNamespaceManager)">
+            <summary>
+            Наследование стилей из первой строки после шапки в таблице
+            </summary>
+            <param name="manager"></param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.UpdateNamedRangeRowIndex(System.Int32)">
+            <summary>
+            При добавлении строки меняем ссылки на все последующие поименованные ячейки, чтобы потом,
+            после массового добавления строк, один раз пройтись и изменить ссылки у всех поименованных ячеек
+            </summary>
+            <param name="newRowIndex">индекс добавленной строки</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.FindRowByIndex(System.Xml.XmlNamespaceManager,System.Int32,System.Boolean@,System.Boolean@)">
+            <summary>
+            Поиск строки по индексу. Если такой строки нет, берем предыдущего соседа
+            </summary>
+            <param name="manager"></param>
+            <param name="index"></param>
+            <param name="doesExists">Существует ли строка с таким порядковым номером</param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.FindRowIndex(System.Xml.XmlNamespaceManager,System.Xml.XmlNode)">
+            <summary>
+            Определение индекса строки (узла)
+            </summary>
+            <param name="manager"></param>
+            <param name="row">строка</param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.FindCellByIndex(System.Xml.XmlNamespaceManager,System.Xml.XmlNode,System.Int32,System.Boolean@,System.Boolean@)">
+            <summary>
+            Поиск ячейки, зная строку и номер ячейки
+            </summary>
+            <param name="manager"></param>
+            <param name="row"></param>
+            <param name="columnIndex"></param>
+            <param name="doesExists"></param>
+            <param name="isParent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.TotalRowCount(System.Xml.XmlNamespaceManager)">
+            <summary>
+            Подсчет общего числа строк - нужно для установки значения ss:ExpandedRowCount
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.ModifyNRReference(System.Xml.XmlNamespaceManager,System.String,System.Int32,System.Int32)">
+            <summary>
+            Изменение ссылки в поименованных ячейках (при вставке строк), которые находятся ниже вставляемых строк
+            </summary>
+            <param name="aDoc">xml-документ</param>
+            <param name="aNameRange">имя ячейки</param>
+            <param name="aRow">кол-во вставленных строк</param>
+            <param name="aCell">номер колонки</param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.InsertRow(System.Xml.XmlNamespaceManager,System.String,System.Xml.XmlNode,System.Int32,System.Boolean@)">
+            <summary>
+            Вставка новой строки
+            </summary>
+            <param name="node"></param>
+            <param name="aRowIndex">Номер искомой строки</param>
+            <param name="isNew">Найдена строка или создана новая</param>
+            <returns></returns>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.IncreaseAllRowsIndexes(System.Xml.XmlNamespaceManager,System.Xml.XmlNode,System.Int32)">
+            <summary>
+            Увеличение индекса всех "родных" строк, идущих после вставленной
+            </summary>
+            <param name="manager"></param>
+            <param name="insertedNode"></param>
+            <param name="insertedRowIndex"></param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.InsertCell(System.Xml.XmlNode,System.Boolean,CommandAS.QueryLib.NamedRange,System.Object)">
+            <summary>
+            Вставка новой ячейки
+            </summary>
+            <param name="node"></param>
+            <param name="aCellIndex"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.UpdateExistingCell(System.Xml.XmlNode,System.String,System.String)">
+            <summary>
+            Изменение содержимого существующей ячейки. Создаем узел Data, если его нет.
+            </summary>
+            <param name="node"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.IncreaseRowIndex(System.Xml.XmlNamespaceManager,System.Xml.XmlNodeList,System.Int32,System.Int32)">
+            <summary>
+            Изменение индексов всех строк, идущих после вставленных строк
+            </summary>
+            <param name="aMng">используемые нэймспэйсы</param>
+            <param name="firstInsertedRowIndex">индекс ПЕРВОЙ вставляемой строки - чтобы изменять только 
+            после вставки ВСЕХ записей для одной поименованной ячейки</param>
+            <param name="increment">величина изменения индекса</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:CommandAS.QueryLib.ExcelTemplateLogic.IncreaseExpandedRowCount(System.Xml.XmlNamespaceManager)" -->
+        <member name="M:CommandAS.QueryLib.ExcelTemplateLogic.ChangeFormulaReference(System.Xml.XmlNamespaceManager,System.Xml.XmlNode,System.Int32)">
+            <summary>
+            Изменение ссылок на строки в формулах
+            </summary>
+            <param name="node"></param>
+            <param name="rowIndex"></param>
+            <param name="insertedRowIndex"></param>
+            <param name="increment"></param>
+        </member>
+        <member name="T:CommandAS.QueryLib.NamedRange">
+            <summary>
+            Класс для хранения значений атрибутов из поименованной ячейки
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._name">
+            <summary>
+            имя ячейки
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._type">
+            <summary>
+            тип вставляемых значений
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._rowIndex">
+            <summary>
+            индекс строки
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._columnIndex">
+            <summary>
+            индекс колонки
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._direction">
+            <summary>
+            направление записи 
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._included">
+            <summary>
+            писать ли в поименованную ячейку
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._multiple">
+            <summary>
+            множественной значение
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._tableIndex">
+            <summary>
+            таблица, из которой брать значения
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._field">
+            <summary>
+            имя поля
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._newRowIndex">
+            <summary>
+            новый индекс строки - после добавления предшествующих строк
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._isEmpty">
+            <summary>
+            Заполняется или не заполняется ячейка
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._styleInhereted">
+            <summary>
+            Стиль ячейки - наследуется ли из первой после шапки строки
+            </summary>
+        </member>
+        <member name="F:CommandAS.QueryLib.NamedRange._styleId">
+            <summary>
+            Стиль ячейки
+            </summary>
+        </member>
+    </members>
+</doc>
