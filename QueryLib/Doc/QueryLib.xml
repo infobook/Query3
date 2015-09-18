@@ -218,6 +218,14 @@
             <param name="aFileName">Имя файла.</param>
             <returns>Загруженный запрос.</returns>
         </member>
+        <member name="M:CommandAS.QueryLib.Query.SetParamDefaultValueAsCurrent">
+            <summary>
+            At long last, using parameters default value!
+            Set they as current value;
+            M.Tor
+            18.09.2015
+            </summary>
+        </member>
         <member name="T:CommandAS.QueryLib.Session">
             <summary>
             Сессия - совокупность запросов объединенных, как правило, или одним соединением с БД

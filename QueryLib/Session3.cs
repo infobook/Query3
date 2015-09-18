@@ -429,8 +429,32 @@ namespace CommandAS.QueryLib
 
       return q;
     }
-  }
 
+    /// <summary>
+    /// At long last, using parameters default value!
+    /// Set they as current value;
+    /// M.Tor
+    /// 18.09.2015
+    /// </summary>
+    public void SetParamDefaultValueAsCurrent()
+    {
+      foreach (Param prm in Params)
+      {
+        switch (prm.Type)
+        {
+          case eQueryParamType.Date:
+            if (prm.DefaultValue.ToLower().IndexOf("today") >= 0)
+              prm.CurrentValue = DateTime.Today.ToShortDateString();
+            else
+              prm.CurrentValue = prm.DefaultValue;
+            break;
+          default:
+            prm.CurrentValue = prm.DefaultValue;
+            break;
+        }
+      }
+    }
+  }
   /// <summary>
   /// Сессия - совокупность запросов объединенных, как правило, или одним соединением с БД
   /// или логикой задачи.
