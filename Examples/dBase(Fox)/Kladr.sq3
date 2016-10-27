@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Session xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Code>101</Code>
+  <Title>Kladr</Title>
+  <Note>Пример группы запросов к классификатору адресов России (БД КЛАДР).</Note>
+  <DBConnection>Provider="VFPOLEDB.1";
+Data Source="W:\RefBook\Kladr\Kladrw\kladrw_min";
+Collating Sequence=RUSSIAN;
+User ID=;
+DSN=;
+Cache Authentication=False;
+Mask Password=False;
+persist security info=False;
+Mode=Share Deny None;
+Extended Properties=;
+Encrypt Password=False</DBConnection>
+  <ParamBegDelim>#?</ParamBegDelim>
+  <ParamEndDelim>?#</ParamEndDelim>
+  <Hash />
+  <XSLTIncludeName />
+  <XSLTIncludeText />
+  <ImagePath />
+  <ImageName />
+  <Queries>
+    <Query>
+      <Code>1</Code>
+      <Name>Уровень 1 - Регионы РОССИИ</Name>
+      <DateCreate>2006-02-17T10:58:27.4694023+03:00</DateCreate>
+      <DateLastModified>2006-02-17T00:00:00.0000000+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author />
+      <Note />
+      <Text>SELECT
+	*
+FROM 
+	kladrw
+WHERE
+	CODE LIKE '%000000000'
+ORDER BY
+	CODE
+</Text>
+      <XSLT>&lt;?xml version="1.0" encoding="Windows-1251"?&gt;
+&lt;xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform" &gt;
+  &lt;xsl:template match="/"&gt;
+		&lt;html&gt;
+			&lt;body&gt;
+				&lt;h1&gt;Регионы РОССИИ&lt;/h1&gt;
+				&lt;table width="100%" border="1"&gt;
+					&lt;tr bgcolor="gainsboro"&gt;
+						&lt;td width="5%"&gt;&lt;b&gt;Код&lt;/b&gt;&lt;/td&gt;
+						&lt;td width="5%"&gt;&lt;b&gt;Регион&lt;/b&gt;&lt;/td&gt;
+						&lt;td width="15%"&gt;&lt;b&gt;Название&lt;/b&gt;&lt;/td&gt;
+					&lt;/tr&gt;
+          		&lt;xsl:for-each select="Query2DS/Query2Table"&gt;
+					&lt;tr&gt;
+						&lt;td&gt;&lt;xsl:value-of select="code"/&gt;&lt;/td&gt;
+						&lt;td&gt;&lt;xsl:value-of select="socr"/&gt;&lt;/td&gt;
+						&lt;td&gt;&lt;xsl:value-of select="name"/&gt;&lt;/td&gt;
+					&lt;/tr&gt;
+          		&lt;/xsl:for-each&gt;
+				&lt;/table&gt;
+			&lt;/body&gt;
+		&lt;/html&gt;
+	&lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;</XSLT>
+      <ImageName />
+      <Params />
+    </Query>
+  </Queries>
+</Session>

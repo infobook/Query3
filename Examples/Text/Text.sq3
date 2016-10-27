@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Session xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Code>0</Code>
+  <Title>Text</Title>
+  <Note>Пример сессии работы с текстом.</Note>
+  <DBConnection>Provider=Microsoft.Jet.OLEDB.4.0;
+Data Source=.\;
+Extended Properties="text;"</DBConnection>
+  <ParamBegDelim>#?</ParamBegDelim>
+  <ParamEndDelim>?#</ParamEndDelim>
+  <Hash />
+  <ImagePath />
+  <ImageName />
+  <Params />
+  <Queries>
+    <Query>
+      <Code>10</Code>
+      <Name>01. Первая таблица - TabOne.txt</Name>
+      <DateCreate>2006-02-17T11:28:53.8607005+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note>Пример запроса к текстовому файлу, содержащему данный в сруктурированном виде (через разделитель).</Note>
+      <Text>SELECT 
+	*
+FROM 
+	tabone.txt
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+    <Query>
+      <Code>12</Code>
+      <Name>02. Пересечение двух таблиц</Name>
+      <DateCreate>2007-03-19T00:22:38.421875+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note>Пример запроса - пересечение двух стуртурированных файлов по ключевому полю, с параметром.</Note>
+      <Text>SELECT 
+	T1.Code AS Код,
+	Name AS Название,
+	FF AS Поле,
+	Note AS Замечание,
+	Data AS Дата,
+	Price AS Цена
+FROM 
+	TabOne.txt AS T1 INNER JOIN TabTwo.txt AS T2 ON T1.Code = T2.Code
+WHERE
+	T1.Code &lt;= #?pCode?#
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params>
+        <Param>
+          <Number>1</Number>
+          <Title>Код &lt;= </Title>
+          <Name>pCode</Name>
+          <Type>Integer</Type>
+          <Inset>false</Inset>
+          <CurrentValue>10</CurrentValue>
+          <DefaultValue />
+          <SelectValue />
+        </Param>
+      </Params>
+    </Query>
+  </Queries>
+</Session>

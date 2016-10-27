@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Session xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Code>0</Code>
+  <Title>InfoBook on PostgreSQL</Title>
+  <Note>TimeOut=30;
+location=InfoBook;</Note>
+  <DBConnection>Provider=PostgreSQL; Data Source=localhost; location=InfoBook; User ID=postgres;password=ghjcn0p)stgre
+</DBConnection>
+  <ParamBegDelim>#?</ParamBegDelim>
+  <ParamEndDelim>?#</ParamEndDelim>
+  <Hash />
+  <ImagePath />
+  <ImageName />
+  <Params />
+  <Queries>
+    <Query>
+      <Code>100</Code>
+      <Name>Test</Name>
+      <DateCreate>2007-08-09T11:55:34.9325497+04:00</DateCreate>
+      <DateLastModified>2007-08-09T00:00:00+04:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note />
+      <Text>
+	SELECT * FROM "iObj"
+
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+  </Queries>
+</Session>

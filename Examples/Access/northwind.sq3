@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Session xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Code>20</Code>
+  <Title>Northwind</Title>
+  <Note>Пример сессии к БД Northwind</Note>
+  <DBConnection>Provider=Microsoft.Jet.OLEDB.4.0;
+Data Source=Northwind.mdb</DBConnection>
+  <ParamBegDelim>#?</ParamBegDelim>
+  <ParamEndDelim>?#</ParamEndDelim>
+  <Hash />
+  <ImagePath />
+  <ImageName />
+  <Params />
+  <Queries>
+    <Query>
+      <Code>10</Code>
+      <Name>01. Самый простой запрос</Name>
+      <DateCreate>2007-03-18T23:45:34.515625+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note />
+      <Text>SELECT * FROM Orders
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+    <Query>
+      <Code>50</Code>
+      <Name>Запросы БД Northwind\Category Sales for 1995</Name>
+      <DateCreate>2007-03-18T23:54:39.875+03:00</DateCreate>
+      <DateLastModified>2010-06-30T00:00:00+04:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>Microsoft</Author>
+      <Note />
+      <Text>SELECT DISTINCTROW 
+	[Product Sales for 1995].CategoryName, 
+	Sum([Product Sales for 1995].ProductSales) AS CategorySales
+FROM 
+	[Product Sales for 1995]
+GROUP BY 
+	[Product Sales for 1995].CategoryName;
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+    <Query>
+      <Code>54</Code>
+      <Name>Запросы БД Northwind\Employees</Name>
+      <DateCreate>2010-06-30T13:35:29.8324887+04:00</DateCreate>
+      <DateLastModified>2010-06-30T00:00:00+04:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note>Список сотрудников</Note>
+      <Text>
+SELECT
+	[EmployeeID] AS aID
+	, [LastName] AS aLName
+	, [FirstName] AS aFName
+	, [Title] AS aTitle
+	, [TitleOfCourtesy] AS aTOC
+	, [BirthDate] AS aBirthday
+	, [Photo] AS aCol_Img_Data
+	, '' AS aCol_Img_File
+	, [Notes] AS aNotes
+FROM 
+	[Employees]
+
+</Text>
+      <XSLT>&lt;?xml version="1.0" encoding="Windows-1251" ?&gt;
+&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+&lt;xsl:decimal-format decimal-separator=","/&gt;
+&lt;xsl:output method="html" encoding="windows-1251"/&gt;
+	&lt;xsl:template match="/"&gt;
+		&lt;HTML&gt;
+			&lt;STYLE TYPE="text/css"&gt;
+	             		 .Caption {font-weight: bold; text-align: center; font-size: 16pt; color: #800040; background-color: #FFFFFF}
+	             		 .Caption2 {font-weight: bold; text-align: center; font-size: 10pt; color: #800040; background-color: #FFFFFF}
+				 .Date {color: blue; font-weight:bold; font-size: 14pt; text-decoration: underline;}
+		         	 .TopValue {font-weight:bold; background-color: #DCDCDC;}
+				 .TopCaption {color:#677889; font-weight:bold}
+				 .GridValue {color: black;font-size: smaller; background-color: #F5F5F5}
+				 .GridCaption {font-weight: bold;color: White;background-color: #677889}
+				 .TotalOld {color: red; font-weight: bold; background-color: #ffffff}
+				 .Total {color: #FFFFFF; font-weight: bold; background-color: #800040}
+				 .TabCaption {color: black; font-size: 10 pt; font-weight:bold; background-color: lightgrey}
+				 .MainValue {color: black; font-size: 10 pt; font-weight:bold; background-color: lightyellow}
+				 .MainValue2 {color: black; font-size: 10 pt; font-weight:bold; background-color: lightsalmon}
+	    		&lt;/STYLE&gt;
+			
+			&lt;BODY bgcolor="#FFFFFF"&gt;  
+				&lt;P class="Caption"&gt;
+					Сотрудники:&lt;BR/&gt;
+				&lt;/P&gt;
+
+				&lt;TABLE width="100%" border="1" ID="GridTable5"&gt;
+					&lt;THEAD style="display=table-header-group;" class="TabCaption"&gt;
+						&lt;TR&gt;
+							&lt;TD align="center" width = "40%"&gt;First Name&lt;/TD&gt;
+							&lt;TD align="center" width = "40%"&gt;Last Name&lt;/TD&gt;
+							&lt;TD align="center" width = "20%"&gt;Birth day&lt;/TD&gt;
+							&lt;TD align="center" width = "40%"&gt;Photo&lt;/TD&gt;
+						&lt;/TR&gt;
+					&lt;/THEAD&gt;
+
+				&lt;xsl:for-each select="Query2DS/Query2Table"&gt;
+						&lt;TR class="MainValue"&gt;
+							&lt;xsl:variable name="varImgFileName" select="aCol_Img_File[.]"/&gt;
+							&lt;TD align="center"&gt;&lt;xsl:value-of select="aFName" /&gt;&lt;/TD&gt;
+							&lt;TD align="center"&gt;&lt;xsl:value-of select="aLName" /&gt;&lt;/TD&gt;
+							&lt;TD align="center"&gt;&lt;xsl:value-of select="aBirthday" /&gt;&lt;/TD&gt;
+							&lt;TD align="center"&gt;
+								&lt;IMG src="{$varImgFileName}" height = "300" /&gt;
+							&lt;/TD&gt;
+						&lt;/TR&gt;
+					&lt;/xsl:for-each&gt;
+				&lt;/TABLE&gt;
+			&lt;/BODY&gt;
+			&lt;br/&gt;
+			&lt;div align="center"&gt;
+				&lt;A class="closeWindow" href="javascript:window.opener=''; window.close();"&gt;Закрыть&lt;/A&gt;
+			&lt;/div&gt;
+		&lt;/HTML&gt;
+	&lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+
+</XSLT>
+      <ImageName />
+      <Params />
+    </Query>
+    <Query>
+      <Code>52</Code>
+      <Name>Запросы БД Northwind\Quarterly Orders by Product</Name>
+      <DateCreate>2007-03-19T00:02:20.578125+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>Microsoft</Author>
+      <Note>Пример перекрестного запроса</Note>
+      <Text>TRANSFORM 
+	Sum(CCur([Order Details].[UnitPrice]*[Quantity]*(1-[Discount])/100)*100) AS ProductAmount
+SELECT 
+	Products.ProductName, 
+	Orders.CustomerID, 
+	Year([OrderDate]) AS OrderYear
+FROM 
+	Products INNER JOIN 
+	(Orders INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].OrderID) 
+	ON Products.ProductID = [Order Details].ProductID
+WHERE 
+	(((Orders.OrderDate) Between #1/1/1995# And #12/31/1995#))
+GROUP BY 
+	Products.ProductName, Orders.CustomerID, Year([OrderDate])
+PIVOT 
+	"Qtr " &amp; DatePart("q",[OrderDate],1,0) In ("Qtr 1","Qtr 2","Qtr 3","Qtr 4");
+</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+  </Queries>
+</Session>

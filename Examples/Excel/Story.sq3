@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Session xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Code>30</Code>
+  <Title>Story</Title>
+  <Note>Сказки, рассказы и мультики</Note>
+  <DBConnection>Provider=Microsoft.Jet.OLEDB.4.0;
+Data Source=.\Story.xls;
+Extended Properties="Excel 8.0;HDR=YES;"</DBConnection>
+  <ParamBegDelim>#?</ParamBegDelim>
+  <ParamEndDelim>?#</ParamEndDelim>
+  <Hash />
+  <ImagePath />
+  <ImageName />
+  <Params />
+  <Queries>
+    <Query>
+      <Code>11</Code>
+      <Name>Персонажи</Name>
+      <DateCreate>2007-03-19T23:32:07.234375+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note />
+      <Text>SELECT
+	[Person$].[Name]
+FROM 
+	[Person$]
+WHERE
+	[Person$].[StoryCode] = #?pSCode?#
+ORDER BY
+	[Person$].[Code]</Text>
+      <XSLT />
+      <ImageName />
+      <Params>
+        <Param>
+          <Number>1</Number>
+          <Title>Сказка, расказ или мультик</Title>
+          <Name>pSCode</Name>
+          <Type>IntSelectList</Type>
+          <Inset>false</Inset>
+          <CurrentValue>10:Сказка про Колобка</CurrentValue>
+          <DefaultValue />
+          <SelectValue>SELECT
+	[Story$].[Code],
+	[Story$].[Title]
+FROM 
+	[Story$]
+ORDER BY
+	[Story$].[Code]</SelectValue>
+        </Param>
+      </Params>
+    </Query>
+    <Query>
+      <Code>10</Code>
+      <Name>Сказки и персонажи</Name>
+      <DateCreate>2007-03-19T23:13:09.046875+03:00</DateCreate>
+      <DateLastModified>2007-03-19T00:00:00+03:00</DateLastModified>
+      <Hidden>false</Hidden>
+      <Author>M.Tor</Author>
+      <Note />
+      <Text>SELECT
+	[Story$].[Title],
+	[Person$].[Name]
+FROM 
+	[Person$] INNER JOIN [Story$] ON [Person$].[StoryCode]=[Story$].[Code]
+ORDER BY
+	[Story$].[Code],[Person$].[Code]</Text>
+      <XSLT />
+      <ImageName />
+      <Params />
+    </Query>
+  </Queries>
+</Session>
