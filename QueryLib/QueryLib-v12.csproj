@@ -100,9 +100,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandAS.Tools4">
-      <HintPath>..\..\tools4\bin\Release\CommandAS.Tools4.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -141,9 +138,7 @@
     <Compile Include="ucParameters.Designer.cs">
       <DependentUpon>ucParameters.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucParamTV.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ucParamTV.cs" />
     <Compile Include="ucTreeQuery.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -167,6 +162,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\tools4\Tools4-v12.csproj">
+      <Project>{7181f026-de87-4463-99b9-0021e586cec1}</Project>
+      <Name>Tools4-v12</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
